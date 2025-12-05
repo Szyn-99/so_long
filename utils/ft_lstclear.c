@@ -6,13 +6,11 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 13:10:32 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/05 21:51:28 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/05 21:52:37 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-
-
 
 void	ft_lstclear(t_list **lst, void (*del)(void *))
 {

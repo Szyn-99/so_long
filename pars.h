@@ -6,13 +6,12 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 10:51:25 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/05 21:27:45 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/05 21:55:11 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PARS_H
 #define PARS_H
-#include "libft/libft.h"
-#include "gnl/get_next_line_bonus.h"
+#include "utils.h"
 int map_verify(int fd);
 #endif

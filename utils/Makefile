@@ -8,6 +8,8 @@ SRC = ft_lstadd_back.c \
     ft_lstdelone.c \
     ft_lstlast.c \
     ft_lstnew.c \
+    get_next_line_utils.c \
+    get_next_line.c \
 
 OBJF = $(SRC:.c=.o)
 
