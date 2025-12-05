@@ -1,7 +1,7 @@
 CC = cc
 FLAGS = -Wall -Wextra -Werror 
-HEADERRRRR = lists.h
-NAME = lists.a
+HEADERRRRR = utils.h
+NAME = utils.a
 
 SRC = ft_lstadd_back.c \
     ft_lstclear.c \
