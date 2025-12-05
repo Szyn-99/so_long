@@ -1,18 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pars.h                                             :+:      :+:    :+:   */
+/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/03 10:51:25 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/05 21:27:45 by aymel-ha         ###   ########.fr       */
+/*   Created: 2025/10/16 13:13:57 by aymel-ha          #+#    #+#             */
+/*   Updated: 2025/12/05 21:40:50 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARS_H
-#define PARS_H
-#include "libft/libft.h"
-#include "gnl/get_next_line_bonus.h"
-int map_verify(int fd);
-#endif
+#include "lists.h"
+
+void	ft_lstadd_back(t_list **lst, t_list *new)
+{
+	t_list	*tmp;
+
+	if (!lst || !new)
+		return ;
+	if (*lst == NULL)
+		*lst = new;
+	else
+	{
+		tmp = ft_lstlast(*lst);
+		tmp->next = new;
+	}
+}

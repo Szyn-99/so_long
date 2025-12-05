@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 10:53:21 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/05 21:16:45 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/05 21:31:31 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_list *gahter_lines(int fd)
 
 int check_line(char *line,  int *start_point, int *exit_point, int *collectables)
 {
-    if(!(line[0]) == '1'  && line[ft_strlen(line)-1] == '1')
+    if(!((line[0]) == '1'  && line[ft_strlen(line)-1] == '1'))
         return 0;
     int i = 1;
     while(line[i] != '\0')
@@ -69,12 +69,12 @@ int map_verify(int fd)
     t_list *another_head = lines;
     while(lines->content != NULL)
     {
-        validity = check_line(lines->content,start_point,exit_point,collectables);
+        validity = check_line(lines->content,&start_point,&exit_point,&collectables);
         if(!validity)
         return ft_lstclear(&another_head, del_content), 0;
         lines = lines->next;
     }
     if(!(start_point == 1 && exit_point == 1 && collectables >= 1))
         return 0;
-    return 1;
+    return ft_lstclear(&another_head, del_content), 1;
 }

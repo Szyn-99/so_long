@@ -1,18 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pars.h                                             :+:      :+:    :+:   */
+/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/03 10:51:25 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/05 21:27:45 by aymel-ha         ###   ########.fr       */
+/*   Created: 2025/10/16 11:03:33 by aymel-ha          #+#    #+#             */
+/*   Updated: 2025/12/05 21:40:08 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARS_H
-#define PARS_H
-#include "libft/libft.h"
-#include "gnl/get_next_line_bonus.h"
-int map_verify(int fd);
-#endif
+#include "lists.h"
+
+t_list	*ft_lstnew(void *content)
+{
+	t_list	*head;
+
+	head = (t_list *)malloc(sizeof(t_list));
+	if (!head)
+		return (NULL);
+	head->content = content;
+	head->next = NULL;
+	return (head);
+}

@@ -1,0 +1,43 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/12/05 21:46:03 by aymel-ha          #+#    #+#             */
+/*   Updated: 2025/12/05 21:47:25 by aymel-ha         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef UTILS_H
+# define UTILS_H
+
+# include <stdlib.h>
+# include <unistd.h>
+
+# ifndef BUFFER_SIZE
+#  define BUFFER_SIZE 1337
+# endif
+
+char	*ft_strchr(const char *s, int c);
+char	*get_next_line(int fd);
+char	*ft_strjoin(char *s1, char *s2);
+size_t	ft_strlen(const char *s);
+char	*ft_strdup(char *s);
+
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
+
+t_list				*ft_lstnew(void *content);
+t_list				*ft_lstlast(t_list *lst);
+void				ft_lstadd_back(t_list **lst, t_list *new);
+void				ft_lstdelone(t_list *lst, void (*del)(void *));
+void				ft_lstclear(t_list **lst, void (*del)(void *));
+
+
+#endif
