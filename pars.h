@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #ifndef PARS_H
-#define PARS_H
-#include "utils.h"
-int map_verify(int fd);
+# define PARS_H
+# include "utils.h"
+int	map_verify(int fd);
 #endif
