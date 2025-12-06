@@ -12,6 +12,6 @@ int	main(void)
 	fd = open("map.ber", O_RDONLY);
 
 	int a = map_verify(fd);
-	printf("%d\n", a);
+	printf("map status = %d\n", a);
 
 }
