@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 21:00:08 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/05 22:17:12 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/06 19:30:59 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ char	*get_next_line(int fd)
 	storage = process_read(storage, fd);
 	line = process_line_extract(storage);
 	if (!line)
-		return (NULL);
+		return (free(storage), NULL);
 	storage = process_storage_resize(storage);
 	return (line);
 }
