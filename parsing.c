@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 10:53:21 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/06 21:42:08 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/06 21:57:20 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,12 +43,12 @@ int	check_line(char *line, int *start_point, int *exit_point, int *collectables)
 	int	i;
 	int line_length;
 	if(!line || !line[0])
-		return (0);
+		return (1337);
 	line_length = ft_strlen(line);
-	if ((line[0] != '1' && line[line_length - 1 - (line[line_length - 1] == '\n')] != '1'))
-		return (999);
+	if ((line[0] != '1' || line[line_length - 1] != '1'))
+		return (0);
 	i = 0;
-	while (line[i] != '\n' && line[i] != '\0')
+	while (line[i] != '\0')
 	{
 		if (line[i] == 'E')
 			(*exit_point)++;
@@ -88,9 +88,11 @@ int	map_verify(int fd)
 		if(!line_to_check)
 			break ;
 		validity = check_line(line_to_check, &start_point, &exit_point, &collectables);
-		printf("Line: %sValidity: %d\n", line_to_check, validity);
-		if (validity == 0)
-			return (ft_lstclear(&another_head, del_content), validity);
+		printf("Line: %s\nValidity: %d\n", line_to_check, validity);
+		if (validity == 1337)
+			return (ft_lstclear(&another_head, del_content), 1);
+		else if(validity == 0)
+			return (ft_lstclear(&another_head, del_content), 0);
 		lines = lines->next;
 	}
 	printf("Start: %d, Exit: %d, Collectables: %d\n", start_point, exit_point, collectables);

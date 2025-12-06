@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 21:00:08 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/06 19:30:59 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/06 21:51:25 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ char	*process_line_extract(char *storage)
 		return (NULL);
 	while (storage[line_length] && storage[line_length] != '\n')
 		line_length++;
-	line = malloc(line_length + 1 + (storage[line_length] == '\n'));
+	line = malloc(line_length + 1);
 	if (!line)
 		return (NULL);
 	line_length = 0;
@@ -84,8 +84,6 @@ char	*process_line_extract(char *storage)
 		line[line_length] = storage[line_length];
 		line_length++;
 	}
-	if (storage[line_length] == '\n')
-		line[line_length++] = '\n';
 	line[line_length] = '\0';
 	return (line);
 }
@@ -102,12 +100,12 @@ char	*process_storage_resize(char *storage)
 		return (free(storage), NULL);
 	resized_storage = NULL;
 	while (storage[i] && storage[i] != '\n')
-	{
 		i++;
-	}
 	if (storage[i] == '\n')
 		i++;
 	resized_storage = malloc(ft_strlen(storage) - i + 1);
+	if(!resized_storage)
+		return (free(storage), NULL);
 	while (storage[i])
 	{
 		resized_storage[j] = storage[i];
