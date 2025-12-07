@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 11:11:19 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/07 17:43:20 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/07 18:14:33 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,9 +37,9 @@ typedef struct s_list
 
 typedef struct s_requirements
 {
-	int				start_point;
-	int				exit_point;
-	int				collectables;
+	int				start;
+	int				exit;
+	int				collect;
 	int				line_length;
 	int				flag;
 	int				validity;

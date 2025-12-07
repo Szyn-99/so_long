@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 10:53:21 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/07 17:46:37 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/07 18:42:24 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,46 +83,46 @@ int	check_line_length(char *line, int len)
 	return (1);
 }
 
+void	init_data(int *flag, int *start_point, int *exit_point,
+		int *collectables)
+{
+	*flag = 1;
+	*start_point = 0;
+	*exit_point = 0;
+	*collectables = 0;
+}
 int	map_verify(int fd)
 {
 	t_list			*lines;
 	t_list			*another_head;
-	t_requirements	requirements;
+	t_requirements	data;
 	char			*line_to_check;
 
+	lines = gahter_lines(fd);
 	if (!lines || fd < 0)
 		return (0);
-	requirements.flag = 1;
-	requirements.start_point = 0;
-	requirements.exit_point = 0;
-	requirements.collectables = 0;
-	lines = gahter_lines(fd);
-	requirements.validity = 99;
+	init_data(&data.flag, &data.start, &data.exit, &data.collect);
 	another_head = lines;
 	while (lines != NULL)
 	{
 		line_to_check = lines->content;
-		if (!line_to_check)
-			break ;
-		if (requirements.flag)
+		if (data.flag)
 		{
-			requirements.line_length = ft_strlen(line_to_check);
-			if (check_first_last_line(line_to_check,
-					requirements.line_length) == 0)
+			data.line_length = ft_strlen(line_to_check);
+			if (check_first_last_line(line_to_check, data.line_length) == 0)
 				return (0);
-			requirements.flag = 0;
+			data.flag = 0;
 		}
-		requirements.validity = check_line(line_to_check, &requirements.start_point,
-				&requirements.exit_point, &requirements.collectables,
-				requirements.line_length);
-		if (requirements.validity == 0)
+		data.validity = check_line(line_to_check, &data.start, &data.exit,
+				&data.collect, data.line_length);
+		if (data.validity == 0)
 			break ;
 		lines = lines->next;
 	}
-	if (!check_first_last_line(line_to_check, requirements.line_length))
-		requirements.validity = 0;
-	if (check_status(requirements.start_point, requirements.exit_point,
-			requirements.collectables) == 0 || requirements.validity == 0)
+	if (!check_first_last_line(line_to_check, data.line_length))
+		data.validity = 0;
+	if (check_status(data.start, data.exit, data.collect) == 0
+		|| data.validity == 0)
 		return (ft_lstclear(&another_head, del_content), 0);
 	return (ft_lstclear(&another_head, del_content), 1);
 }

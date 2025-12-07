@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 17:30:37 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/07 17:30:38 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/07 18:25:29 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ int	check_first_last_line(char *line, int base_length)
 	int	i;
 
 	line_length = ft_strlen(line);
-	printf("line length = %d\nbase_length = %d\n", line_length, base_length);
 	if (line_length != base_length)
 		return (0);
 	i = 0;
