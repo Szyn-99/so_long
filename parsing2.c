@@ -1,10 +1,20 @@
 #include "utils.h"
 #include <stdio.h>
 
-int check_line_length(char *line, int len)
+
+
+int check_first_last_line(char *line, int base_length)
 {
-    int line_len = ft_strlen(line);
-    if(line_len != len)
+    int line_length = ft_strlen(line);
+    printf("line length = %d\nbase_length = %d\n", line_length, base_length);
+    if(line_length != base_length)
         return 0;
+    int i = 0;
+    while(line[i] != '\0')
+    {
+        if(line[i] != '1')
+            return 0;
+        i++;
+    }
     return 1;
 }

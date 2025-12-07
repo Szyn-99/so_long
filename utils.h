@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 11:11:19 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/07 15:49:56 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/07 17:07:08 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char				*ft_strdup(char *s);
 void	del_content(void *content);
 int	map_verify(int fd);
 int check_line_length(char *line, int len);
-
+int check_first_last_line(char *line, int base_length);
 typedef struct s_list
 {
 	void			*content;
