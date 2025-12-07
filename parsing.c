@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 10:53:21 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/06 21:57:20 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/07 15:40:07 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ t_list	*gahter_lines(int fd)
 	while (line != NULL)
 	{
 		line = get_next_line(fd);
-		// if(!line)
-		// 	break;
 		node = ft_lstnew(line);
 		if (!node)
 			return (free(line), ft_lstclear(&list_of_lines, del_content), NULL);
@@ -63,6 +61,13 @@ int	check_line(char *line, int *start_point, int *exit_point, int *collectables)
 	return (1);
 }
 
+int check_status(int start_point, int exit_point, int collectables)
+{
+	if ((start_point == 1 && exit_point == 1 && collectables >= 1))
+		return (1);
+	return (0);
+}
+
 int	map_verify(int fd)
 {
 	int		start_point;
@@ -78,7 +83,7 @@ int	map_verify(int fd)
 	collectables = 0;
 	lines = gahter_lines(fd);
 	validity = 99;
-	if (!lines)
+	if (!lines || fd < 0)
 		return (0);
 	another_head = lines;
 	line_to_check = "magic";
@@ -88,15 +93,14 @@ int	map_verify(int fd)
 		if(!line_to_check)
 			break ;
 		validity = check_line(line_to_check, &start_point, &exit_point, &collectables);
-		printf("Line: %s\nValidity: %d\n", line_to_check, validity);
 		if (validity == 1337)
-			return (ft_lstclear(&another_head, del_content), 1);
+			break;
 		else if(validity == 0)
 			return (ft_lstclear(&another_head, del_content), 0);
 		lines = lines->next;
 	}
-	printf("Start: %d, Exit: %d, Collectables: %d\n", start_point, exit_point, collectables);
-	if (!(start_point == 1 && exit_point == 1  && collectables >= 1))
+	if(check_status(start_point, exit_point, collectables) == 0 || validity != 1337)
 		return (ft_lstclear(&another_head, del_content), 0);
+	
 	return (ft_lstclear(&another_head, del_content), 1);
 }
