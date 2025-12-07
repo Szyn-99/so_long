@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 10:53:21 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/07 16:32:21 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/07 16:45:37 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_list	*gahter_lines(int fd)
 	while (line != NULL)
 	{
 		line = get_next_line(fd);
-		if(!line || line[0] == '\n')
+		if(!line || !line[0])
 			break;
 		node = ft_lstnew(line);
 		if (!node)
@@ -42,8 +42,8 @@ int	check_line(char *line, int *start_point, int *exit_point, int *collectables,
 {
 	int	i;
 	int line_length;
-	if(!line || !line[0])
-		return (1337);
+	// if(!line || !line[0])
+	// 	return (1337);
 	line_length = ft_strlen(line);
 	printf("base_length = %d VS line_length = %d\n", base_length, line_length);
 	if(line_length != base_length)
@@ -108,21 +108,20 @@ int	map_verify(int fd)
 		line_to_check = lines->content;
 		if(!line_to_check)
 			break ;
+		printf("the line =======> %s\n", line_to_check);
 		if(flag)
 		{
 			line_length = ft_strlen(line_to_check);
 			flag = 0;
 		}
 		validity = check_line(line_to_check, &start_point, &exit_point, &collectables, line_length);
-		printf("check_line = %d\n", validity);
-		if (validity == 1337)
+		if(validity == 0)
 			break;
-		else if(validity == 0)
-			return (ft_lstclear(&another_head, del_content), 0);
+		printf("check_line = %d\n", validity);
 		lines = lines->next;
 	}
 	printf("check_status = %d\nvalidity = %d\nSP %d\nEP = %d\nCol = %d\n", check_status(start_point, exit_point, collectables),validity, start_point, exit_point, collectables);
-	if(check_status(start_point, exit_point, collectables) == 0 || validity != 1337)
+	if(check_status(start_point, exit_point, collectables) == 0 || validity == 0)
 		return (ft_lstclear(&another_head, del_content), 0);
 	
 	return (ft_lstclear(&another_head, del_content), 1);
