@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 10:53:21 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/07 15:40:07 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/07 15:53:35 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,13 +36,15 @@ t_list	*gahter_lines(int fd)
 	return (list_of_lines);
 }
 
-int	check_line(char *line, int *start_point, int *exit_point, int *collectables)
+int	check_line(char *line, int *start_point, int *exit_point, int *collectables, int base_length)
 {
 	int	i;
 	int line_length;
 	if(!line || !line[0])
 		return (1337);
 	line_length = ft_strlen(line);
+	if(line_length != base_length)
+		return 0;
 	if ((line[0] != '1' || line[line_length - 1] != '1'))
 		return (0);
 	i = 0;
@@ -67,7 +69,13 @@ int check_status(int start_point, int exit_point, int collectables)
 		return (1);
 	return (0);
 }
-
+int check_line_length(char *line, int len)
+{
+    int line_len = ft_strlen(line);
+    if(line_len != len)
+        return 0;
+    return 1;
+}
 int	map_verify(int fd)
 {
 	int		start_point;
@@ -77,7 +85,11 @@ int	map_verify(int fd)
 	t_list	*lines;
 	t_list	*another_head;
 	char *line_to_check;
+	int line_length;
+	int flag = 1;
 
+
+	
 	start_point = 0;
 	exit_point = 0;
 	collectables = 0;
@@ -85,6 +97,7 @@ int	map_verify(int fd)
 	validity = 99;
 	if (!lines || fd < 0)
 		return (0);
+	
 	another_head = lines;
 	line_to_check = "magic";
 	while (lines != NULL)
@@ -92,7 +105,12 @@ int	map_verify(int fd)
 		line_to_check = lines->content;
 		if(!line_to_check)
 			break ;
-		validity = check_line(line_to_check, &start_point, &exit_point, &collectables);
+		if(flag)
+		{
+			line_length = ft_strlen(line_to_check);
+			flag = 0;
+		}
+		validity = check_line(line_to_check, &start_point, &exit_point, &collectables, line_length);
 		if (validity == 1337)
 			break;
 		else if(validity == 0)
