@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 10:53:21 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/07 15:53:35 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/07 16:24:07 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	check_line(char *line, int *start_point, int *exit_point, int *collectables,
 	if(!line || !line[0])
 		return (1337);
 	line_length = ft_strlen(line);
+	printf("base_length = %d VS line_length = %d\n", base_length, line_length);
 	if(line_length != base_length)
 		return 0;
 	if ((line[0] != '1' || line[line_length - 1] != '1'))
@@ -111,12 +112,14 @@ int	map_verify(int fd)
 			flag = 0;
 		}
 		validity = check_line(line_to_check, &start_point, &exit_point, &collectables, line_length);
+		printf("check_line = %d\n", validity);
 		if (validity == 1337)
 			break;
 		else if(validity == 0)
 			return (ft_lstclear(&another_head, del_content), 0);
 		lines = lines->next;
 	}
+	printf("check_status = %d\nvalidity = %d\nSP %d\nEP = %d\nCol = %d\n", check_status(start_point, exit_point, collectables),validity, start_point, exit_point, collectables);
 	if(check_status(start_point, exit_point, collectables) == 0 || validity != 1337)
 		return (ft_lstclear(&another_head, del_content), 0);
 	
