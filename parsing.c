@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 10:53:21 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/07 17:30:08 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/07 17:46:37 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@ t_list	*gahter_lines(int fd)
 	while (line != NULL)
 	{
 		line = get_next_line(fd);
-		if(!line || !line[0])
-			break;
+		if (!line || !line[0])
+			break ;
 		node = ft_lstnew(line);
 		if (!node)
 			return (free(line), ft_lstclear(&list_of_lines, del_content), NULL);
@@ -39,17 +39,15 @@ t_list	*gahter_lines(int fd)
 	return (list_of_lines);
 }
 
-
-int	check_line(char *line, int *start_point, int *exit_point, int *collectables, int base_length)
+int	check_line(char *line, int *start_point, int *exit_point, int *collectables,
+		int base_length)
 {
 	int	i;
-	int line_length;
-	// if(!line || !line[0])
-	// 	return (1337);
+	int	line_length;
+
 	line_length = ft_strlen(line);
-	printf("base_length = %d VS line_length = %d\n", base_length, line_length);
-	if(line_length != base_length)
-		return 0;
+	if (line_length != base_length)
+		return (0);
 	if ((line[0] != '1' || line[line_length - 1] != '1'))
 		return (0);
 	i = 0;
@@ -58,76 +56,73 @@ int	check_line(char *line, int *start_point, int *exit_point, int *collectables,
 		if (line[i] == 'E')
 			(*exit_point)++;
 		else if (line[i] == 'P')
-			(*start_point)++;	
+			(*start_point)++;
 		else if (line[i] == 'C')
 			(*collectables)++;
 		else if (line[i] != '0' && line[i] != '1')
-			return 0;
+			return (0);
 		i++;
 	}
 	return (1);
 }
 
-
-int check_status(int start_point, int exit_point, int collectables)
+int	check_status(int start_point, int exit_point, int collectables)
 {
 	if ((start_point == 1 && exit_point == 1 && collectables >= 1))
 		return (1);
 	return (0);
 }
 
-int check_line_length(char *line, int len)
+int	check_line_length(char *line, int len)
 {
-    int line_len = ft_strlen(line);
-    if(line_len != len)
-        return 0;
-    return 1;
+	int	line_len;
+
+	line_len = ft_strlen(line);
+	if (line_len != len)
+		return (0);
+	return (1);
 }
 
 int	map_verify(int fd)
 {
-	int		start_point;
-	int		exit_point;
-	int		collectables;
-	int		validity;
-	t_list	*lines;
-	t_list	*another_head;
-	char *line_to_check;
-	int line_length;
-	int flag = 1;
+	t_list			*lines;
+	t_list			*another_head;
+	t_requirements	requirements;
+	char			*line_to_check;
 
-
-	
-	start_point = 0;
-	exit_point = 0;
-	collectables = 0;
-	lines = gahter_lines(fd);
-	validity = 99;
 	if (!lines || fd < 0)
 		return (0);
+	requirements.flag = 1;
+	requirements.start_point = 0;
+	requirements.exit_point = 0;
+	requirements.collectables = 0;
+	lines = gahter_lines(fd);
+	requirements.validity = 99;
 	another_head = lines;
-	line_to_check = lines->content;
 	while (lines != NULL)
 	{
 		line_to_check = lines->content;
-		if(!line_to_check)
+		if (!line_to_check)
 			break ;
-		if(flag)
+		if (requirements.flag)
 		{
-			line_length = ft_strlen(line_to_check);
-			if(check_first_last_line(line_to_check,line_length) == 0)
-				return 0;
-			flag = 0;
+			requirements.line_length = ft_strlen(line_to_check);
+			if (check_first_last_line(line_to_check,
+					requirements.line_length) == 0)
+				return (0);
+			requirements.flag = 0;
 		}
-		validity = check_line(line_to_check, &start_point, &exit_point, &collectables, line_length);
-		if(validity == 0)
-			break;
+		requirements.validity = check_line(line_to_check, &requirements.start_point,
+				&requirements.exit_point, &requirements.collectables,
+				requirements.line_length);
+		if (requirements.validity == 0)
+			break ;
 		lines = lines->next;
 	}
-	if(!check_first_last_line(line_to_check,line_length))
-		validity = 0;
-	if(check_status(start_point, exit_point, collectables) == 0 || validity == 0)
+	if (!check_first_last_line(line_to_check, requirements.line_length))
+		requirements.validity = 0;
+	if (check_status(requirements.start_point, requirements.exit_point,
+			requirements.collectables) == 0 || requirements.validity == 0)
 		return (ft_lstclear(&another_head, del_content), 0);
-	
 	return (ft_lstclear(&another_head, del_content), 1);
 }

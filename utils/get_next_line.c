@@ -104,7 +104,7 @@ char	*process_storage_resize(char *storage)
 	if (storage[i] == '\n')
 		i++;
 	resized_storage = malloc(ft_strlen(storage) - i + 1);
-	if(!resized_storage)
+	if (!resized_storage)
 		return (free(storage), NULL);
 	while (storage[i])
 	{
