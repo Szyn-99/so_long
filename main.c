@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/08 16:45:43 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/08 18:15:43 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/08 20:44:22 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,12 @@ int	main(int ac, char **av)
 {
 	int	fd;
 	int	status;
-
+	// if(ac != 2)
+	// {
+	// 	printf("No Path");
+	// 	return 1;
+	// }
+	(void)ac;
 	if (!av[1])
 	{
 		printf("Requires Map");
@@ -29,6 +34,7 @@ int	main(int ac, char **av)
 		return (1);
 	}
 	fd = open(av[1], O_RDONLY);
+	printf("%d\n", fd);
 	status = map_verify(fd);
 	if (status == 1)
 	{
@@ -40,4 +46,5 @@ int	main(int ac, char **av)
 		printf("Invalid Map");
 		return (1);
 	}
+	
 }

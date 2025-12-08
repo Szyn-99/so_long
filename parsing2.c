@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 17:30:37 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/08 19:50:33 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/08 21:03:05 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,12 +51,30 @@ int	check_status(int start_point, int exit_point, int collectables)
 	return (0);
 }
 
+int final_check(char *found, char *str, int i)
+{
+	if(!found)
+	{
+		while (str[i] != '.' && str[i])
+			i++;
+		if (i >= 1)
+			return (1);
+		else
+			return 0;
+	}
+	i++;
+	while (found[i] != '.' && found[i])
+		++i;
+	if (i >= 1)
+		return (1);
+	return (0);
+}
+
 int	check_map_path(char *str)
 {
 	char	*extention;
 	int		i;
 	char	*found;
-	int		x;
 
 	if (!str)
 		return (0);
@@ -65,14 +83,7 @@ int	check_map_path(char *str)
 		return (0);
 	i = 0;
 	found = ft_strrchr(str, '/');
-	i++;
-	x = 0;
-	while (found[i] != '.' && found[i])
-	{
-		i++;
-		x++;
-	}
-	if (x >= 1)
-		return (1);
-	return (0);
+	if(!found)
+		found = NULL;
+	return final_check(found, str, i);
 }

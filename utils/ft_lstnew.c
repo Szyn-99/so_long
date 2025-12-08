@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 11:03:33 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/08 19:51:10 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/08 20:16:48 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,5 +21,5 @@ t_list	*ft_lstnew(void *content)
 		return (NULL);
 	head->content = content;
 	head->next = NULL;
-	return (head);
+	return (head); 
 }

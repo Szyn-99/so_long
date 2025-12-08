@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 11:11:19 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/08 19:56:34 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/08 20:06:17 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,6 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include "utils/utils_helpers.h"
-# ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1337
-# endif
-
 
 
 typedef struct s_requirements

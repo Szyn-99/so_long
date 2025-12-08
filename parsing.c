@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 10:53:21 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/08 17:47:31 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/08 21:02:55 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_list	*gahter_lines(int fd)
 		line = get_next_line(fd);
 		if (!line)
 			break ;
-		if (ft_strlen(line) == 0)
+		if (ft_strlen(line) == 0 )
 		{
 			free(line);
 			continue ;
