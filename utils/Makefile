@@ -1,6 +1,6 @@
 CC = cc
 FLAGS = -Wall -Wextra -Werror 
-HEADERRRRR = utils.h
+HEADERRRRR = utils_helpers.h
 NAME = utils.a
 
 SRC = ft_lstadd_back.c \
@@ -10,8 +10,9 @@ SRC = ft_lstadd_back.c \
     ft_lstnew.c \
     get_next_line_utils.c \
     get_next_line.c \
-    ft_strrchr.c
-    
+    ft_strrchr.c \
+    ft_strnstr.c \
+
 OBJF = $(SRC:.c=.o)
 
 all: $(NAME)

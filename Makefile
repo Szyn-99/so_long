@@ -1,9 +1,9 @@
 CC = cc
-HEADER = declarations.h
+HEADER = utils.h
 FLAGS = -Wall -Wextra -Werror
 SOURCE = 
 OBJECTS = $(HELPERS:.c=.o)
-NAME = libftprintf.a
+NAME = Soo_Looong
 
 all: $(NAME)
  

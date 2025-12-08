@@ -6,11 +6,11 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 21:00:13 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/05 21:51:12 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/08 19:50:59 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "utils_helpers.h"
 
 char	*ft_strchr(const char *s, int c)
 {

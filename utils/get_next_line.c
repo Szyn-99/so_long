@@ -6,11 +6,11 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 21:00:08 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/06 21:51:25 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/08 19:50:54 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "utils_helpers.h"
 
 char	*process_reading_helper(char *storage, char *temp)
 {

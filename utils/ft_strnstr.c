@@ -6,11 +6,11 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 11:42:02 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/08 18:05:21 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/08 19:51:07 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "utils.h"
+#include "utils_helpers.h"
 
 char	*ft_strnstr(const char *big, const char *little, size_t len)
 {

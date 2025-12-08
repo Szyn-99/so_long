@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 11:11:19 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/08 18:09:19 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/08 19:56:34 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,12 @@
 # include <fcntl.h>
 # include <stdlib.h>
 # include <unistd.h>
-
+# include "utils/utils_helpers.h"
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1337
 # endif
 
-typedef struct s_list
-{
-	void			*content;
-	struct s_list	*next;
-}					t_list;
+
 
 typedef struct s_requirements
 {
@@ -40,14 +36,8 @@ typedef struct s_requirements
 	char			*linex;
 }					t_requirements;
 
-char				*ft_strrchr(const char *s, int c);
-char				*ft_strnstr(const char *big, const char *little,
-						size_t len);
+
 int					check_map_path(char *str);
-char				*get_next_line(int fd);
-char				*ft_strjoin(char *s1, char *s2);
-size_t				ft_strlen(const char *s);
-char				*ft_strdup(char *s);
 void				del_content(void *content);
 int					map_verify(int fd);
 int					check_first_last_line(char *line, int base_length);
