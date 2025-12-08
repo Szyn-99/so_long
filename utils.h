@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 11:11:19 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/07 18:14:33 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/08 17:02:20 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,15 +20,6 @@
 #  define BUFFER_SIZE 1337
 # endif
 
-char				*ft_strchr(const char *s, int c);
-char				*get_next_line(int fd);
-char				*ft_strjoin(char *s1, char *s2);
-size_t				ft_strlen(const char *s);
-char				*ft_strdup(char *s);
-void				del_content(void *content);
-int					map_verify(int fd);
-int					check_line_length(char *line, int len);
-int					check_first_last_line(char *line, int base_length);
 typedef struct s_list
 {
 	void			*content;
@@ -37,13 +28,28 @@ typedef struct s_list
 
 typedef struct s_requirements
 {
+	t_list			*lines;
+	t_list			*another_head;
 	int				start;
 	int				exit;
 	int				collect;
 	int				line_length;
 	int				flag;
 	int				validity;
+	char			*linex;
 }					t_requirements;
+
+char				*ft_strchr(const char *s, int c);
+char				*get_next_line(int fd);
+char				*ft_strjoin(char *s1, char *s2);
+size_t				ft_strlen(const char *s);
+char				*ft_strdup(char *s);
+void				del_content(void *content);
+int					map_verify(int fd);
+int					check_first_last_line(char *line, int base_length);
+int					check_status(int start_point, int exit_point,
+						int collectables);
+void				init_data(t_requirements *data);
 
 t_list				*ft_lstnew(void *content);
 t_list				*ft_lstlast(t_list *lst);
