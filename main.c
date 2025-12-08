@@ -15,26 +15,29 @@
 
 int	main(int ac, char **av)
 {
-	if(!av[1])
+	int	fd;
+	int	status;
+
+	if (!av[1])
 	{
-		printf("Requires Map");	
-		return 1;
+		printf("Requires Map");
+		return (1);
 	}
-	if(check_map_path(av[1]) == 0)
+	if (check_map_path(av[1]) == 0)
 	{
 		printf("Invalid Path");
-		return 1;
+		return (1);
 	}
-	int fd = open(av[1], O_RDONLY);
-	int status = map_verify(fd);
-	if(status == 1)
+	fd = open(av[1], O_RDONLY);
+	status = map_verify(fd);
+	if (status == 1)
 	{
 		printf("Valid Map");
-		return 0;
+		return (0);
 	}
 	else
 	{
 		printf("Invalid Map");
-		return 1;
+		return (1);
 	}
 }

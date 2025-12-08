@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 17:30:37 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/08 18:15:30 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/08 19:39:49 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,28 @@ int	check_status(int start_point, int exit_point, int collectables)
 	return (0);
 }
 
-int check_map_path(char *str)
+int	check_map_path(char *str)
 {
-	char *extention = ft_strnstr(str, ".ber", ft_strlen(str));
-	printf("%s\n%s\n", extention, str);
-	if(extention == NULL)
-		return 0;
-	return 1;
+	char	*extention;
+	int		i;
+	char	*found;
+	int		x;
+
+	if (!str)
+		return (0);
+	extention = ft_strnstr(str, ".ber", ft_strlen(str));
+	if (extention == NULL)
+		return (0);
+	i = 0;
+	found = ft_strrchr(str, '/');
+	i++;
+	x = 0;
+	while (found[i] != '.' && found[i])
+	{
+		i++;
+		x++;
+	}
+	if (x >= 1)
+		return (1);
+	return (0);
 }
