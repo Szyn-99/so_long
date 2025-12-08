@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 11:11:19 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/05 21:54:08 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/08 18:06:10 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@
 #  define BUFFER_SIZE 1337
 # endif
 
-char				*ft_strchr(const char *s, int c);
+char	*ft_strrchr(const char *s, int c);
+char	*ft_strchr(const char *s, int c);
 char				*get_next_line(int fd);
 char				*ft_strjoin(char *s1, char *s2);
 size_t				ft_strlen(const char *s);

@@ -1,40 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/08 16:45:43 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/08 18:15:43 by aymel-ha         ###   ########.fr       */
+/*   Created: 2025/10/14 10:20:55 by aymel-ha          #+#    #+#             */
+/*   Updated: 2025/12/08 17:58:56 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include <stdio.h>
 
-int	main(int ac, char **av)
+char	*ft_strrchr(const char *s, int c)
 {
-	if(!av[1])
+	int	i;
+
+	i = 0;
+	while (s[i] != '\0')
 	{
-		printf("Requires Map");	
-		return 1;
+		i++;
 	}
-	if(check_map_path(av[1]) == 0)
+	if ((char)c == '\0')
+		return ((char *)&s[i]);
+	i--;
+	while (i >= 0)
 	{
-		printf("Invalid Path");
-		return 1;
+		if (s[i] == (char)c)
+		{
+			return ((char *)&s[i]);
+		}
+		i--;
 	}
-	int fd = open(av[1], O_RDONLY);
-	int status = map_verify(fd);
-	if(status == 1)
-	{
-		printf("Valid Map");
-		return 0;
-	}
-	else
-	{
-		printf("Invalid Map");
-		return 1;
-	}
+	return (NULL);
 }

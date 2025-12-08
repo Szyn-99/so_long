@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 11:11:19 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/08 17:02:20 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/08 18:09:19 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+#include <fcntl.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1337
@@ -39,7 +40,9 @@ typedef struct s_requirements
 	char			*linex;
 }					t_requirements;
 
-char				*ft_strchr(const char *s, int c);
+char	*ft_strrchr(const char *s, int c);
+char	*ft_strnstr(const char *big, const char *little, size_t len);
+int check_map_path(char *str);
 char				*get_next_line(int fd);
 char				*ft_strjoin(char *s1, char *s2);
 size_t				ft_strlen(const char *s);

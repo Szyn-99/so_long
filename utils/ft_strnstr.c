@@ -1,40 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/08 16:45:43 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/08 18:15:43 by aymel-ha         ###   ########.fr       */
+/*   Created: 2025/10/14 11:42:02 by aymel-ha          #+#    #+#             */
+/*   Updated: 2025/12/08 18:05:21 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
-#include <stdio.h>
 
-int	main(int ac, char **av)
+char	*ft_strnstr(const char *big, const char *little, size_t len)
 {
-	if(!av[1])
+	size_t	i;
+	size_t	j;
+	size_t	l;
+
+	i = 0;
+	if (*little == '\0')
+		return ((char *)big);
+	while (i < len && big[i] != '\0')
 	{
-		printf("Requires Map");	
-		return 1;
+		j = 0;
+		l = i;
+		while (l < len && big[l] && little[j] && little[j] == big[l])
+		{
+			l++;
+			j++;
+		}
+		if (little[j] == '\0')
+		{
+			return ((char *)&big[i]);
+		}
+		i++;
 	}
-	if(check_map_path(av[1]) == 0)
-	{
-		printf("Invalid Path");
-		return 1;
-	}
-	int fd = open(av[1], O_RDONLY);
-	int status = map_verify(fd);
-	if(status == 1)
-	{
-		printf("Valid Map");
-		return 0;
-	}
-	else
-	{
-		printf("Invalid Map");
-		return 1;
-	}
+	return (NULL);
 }
