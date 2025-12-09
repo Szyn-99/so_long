@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 10:53:21 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/08 21:02:55 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/09 17:47:03 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,24 +18,43 @@ void	del_content(void *content)
 	free(content);
 }
 
+int function_help(char *line)
+{
+	int i = 0;
+	while(line[i])
+	{
+		if(line[i] != '1')
+			return 0;
+		i++;
+	}
+	return 1;
+}
+
 t_list	*gahter_lines(int fd)
 {
 	t_list	*list_of_lines;
 	t_list	*node;
 	char	*line;
-
+	int inside_map =  0;
+	int empties = 0;
 	list_of_lines = NULL;
-	line = "magic";
-	while (line != NULL)
+	while ((line = get_next_line(fd)))
 	{
-		line = get_next_line(fd);
-		if (!line)
-			break ;
-		if (ft_strlen(line) == 0 )
+		if(!line[0])
 		{
 			free(line);
-			continue ;
+			if(!inside_map)
+				continue;
+			empties = 1;	
+			continue;
 		}
+		if(empties)
+		{
+			free(line);
+			return (ft_lstclear(&list_of_lines, del_content), NULL);
+		}
+		inside_map = 1;
+		empties = 0;
 		node = ft_lstnew(line);
 		if (!node)
 			return (free(line), ft_lstclear(&list_of_lines, del_content), NULL);
@@ -51,7 +70,7 @@ int	check_line(char *line, t_requirements *data, int base_length)
 
 	line_length = ft_strlen(line);
 	if (!line_length)
-		return (0);
+		return (1);
 	if (line_length != base_length)
 		return (0);
 	if ((line[0] != '1' || line[line_length - 1] != '1'))
