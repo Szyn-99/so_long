@@ -6,61 +6,54 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 10:53:21 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/09 17:47:03 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:06:11 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include <stdio.h>
 
-void	del_content(void *content)
+void	del(void *content)
 {
 	free(content);
 }
 
-int function_help(char *line)
+void	for_norminette_sake(t_gather *data)
 {
-	int i = 0;
-	while(line[i])
-	{
-		if(line[i] != '1')
-			return 0;
-		i++;
-	}
-	return 1;
+	data->inside_map = 0;
+	data->empties = 0;
+	data->list = NULL;
+	data->line = "magic";
 }
 
 t_list	*gahter_lines(int fd)
 {
-	t_list	*list_of_lines;
-	t_list	*node;
-	char	*line;
-	int inside_map =  0;
-	int empties = 0;
-	list_of_lines = NULL;
-	while ((line = get_next_line(fd)))
+	t_gather	data;
+
+	for_norminette_sake(&data);
+	while (data.line)
 	{
-		if(!line[0])
+		data.line = get_next_line(fd);
+		if(!data.line)
+			break;
+		if (!data.line[0])
 		{
-			free(line);
-			if(!inside_map)
-				continue;
-			empties = 1;	
-			continue;
+			free(data.line);
+			if (!data.inside_map)
+				continue ;
+			data.empties = 1;
+			continue ;
 		}
-		if(empties)
-		{
-			free(line);
-			return (ft_lstclear(&list_of_lines, del_content), NULL);
-		}
-		inside_map = 1;
-		empties = 0;
-		node = ft_lstnew(line);
-		if (!node)
-			return (free(line), ft_lstclear(&list_of_lines, del_content), NULL);
-		ft_lstadd_back(&list_of_lines, node);
+		if (data.empties)
+			return (free(data.line), ft_lstclear(&data.list, del), NULL);
+		data.inside_map = 1;
+		data.empties = 0;
+		data.node = ft_lstnew(data.line);
+		if (!data.node)
+			return (free(data.line), ft_lstclear(&data.list, del), NULL);
+		ft_lstadd_back(&data.list, data.node);
 	}
-	return (list_of_lines);
+	return (data.list);
 }
 
 int	check_line(char *line, t_requirements *data, int base_length)
@@ -102,7 +95,7 @@ int	map_verify(int fd)
 	data.another_head = data.lines;
 	data.line_length = ft_strlen(data.lines->content);
 	if (check_first_last_line(data.lines->content, data.line_length) == 0)
-		return (ft_lstclear(&data.another_head, del_content), 0);
+		return (ft_lstclear(&data.another_head, del), 0);
 	while (data.lines != NULL)
 	{
 		data.linex = data.lines->content;
@@ -115,6 +108,6 @@ int	map_verify(int fd)
 		data.validity = 0;
 	if (check_status(data.start, data.exit, data.collect) == 0
 		|| data.validity == 0)
-		return (ft_lstclear(&data.another_head, del_content), 0);
-	return (ft_lstclear(&data.another_head, del_content), 1);
+		return (ft_lstclear(&data.another_head, del), 0);
+	return (ft_lstclear(&data.another_head, del), 1);
 }

@@ -51,16 +51,16 @@ int	check_status(int start_point, int exit_point, int collectables)
 	return (0);
 }
 
-int final_check(char *found, char *str, int i)
+int	final_check(char *found, char *str, int i)
 {
-	if(!found)
+	if (!found)
 	{
 		while (str[i] != '.' && str[i])
 			i++;
 		if (i >= 1)
 			return (1);
 		else
-			return 0;
+			return (0);
 	}
 	i++;
 	while (found[i] != '.' && found[i])
@@ -83,7 +83,7 @@ int	check_map_path(char *str)
 		return (0);
 	i = 0;
 	found = ft_strrchr(str, '/');
-	if(!found)
+	if (!found)
 		found = NULL;
-	return final_check(found, str, i);
+	return (final_check(found, str, i));
 }

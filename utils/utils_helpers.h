@@ -32,7 +32,8 @@ char				*get_next_line(int fd);
 char				*ft_strjoin(char *s1, char *s2);
 size_t				ft_strlen(const char *s);
 char				*ft_strdup(char *s);
-char				*ft_strnstr(const char *big, const char *little, size_t len);
+char				*ft_strnstr(const char *big, const char *little,
+						size_t len);
 
 t_list				*ft_lstnew(void *content);
 t_list				*ft_lstlast(t_list *lst);

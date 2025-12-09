@@ -17,10 +17,11 @@ int	main(int ac, char **av)
 {
 	int	fd;
 	int	status;
+
 	// if(ac != 2)
 	// {
 	// 	printf("No Path");
-	// 	return 1;
+	// 	return (1);
 	// }
 	(void)ac;
 	if (!av[1])
@@ -46,5 +47,4 @@ int	main(int ac, char **av)
 		printf("Invalid Map");
 		return (1);
 	}
-	
 }
