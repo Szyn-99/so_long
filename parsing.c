@@ -6,42 +6,39 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 10:53:21 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/09 18:24:39 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:57:10 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include <stdio.h>
 
-
-t_list	*gahter_lines(int fd)
+t_list	*gahter_lines(int fd, t_gather *data)
 {
-	t_gather	data;
-
-	for_norminette_sake(&data);
-	while (data.line)
+	for_norminette_sake(data);
+	while (data->line)
 	{
-		data.line = get_next_line(fd);
-		if(!data.line)
-			break;
-		if (!data.line[0])
+		data->line = get_next_line(fd);
+		if (!data->line)
+			break ;
+		if (!data->line[0])
 		{
-			free(data.line);
-			if (!data.inside_map)
+			free(data->line);
+			if (!data->inside_map)
 				continue ;
-			data.empties = 1;
+			data->empties = 1;
 			continue ;
 		}
-		if (data.empties)
-			return (free(data.line), ft_lstclear(&data.list, del), NULL);
-		data.inside_map = 1;
-		data.empties = 0;
-		data.node = ft_lstnew(data.line);
-		if (!data.node)
-			return (free(data.line), ft_lstclear(&data.list, del), NULL);
-		ft_lstadd_back(&data.list, data.node);
+		if (data->empties)
+			return (free(data->line), ft_lstclear(&data->list, del), NULL);
+		data->inside_map = 1;
+		data->empties = 0;
+		data->node = ft_lstnew(data->line);
+		if (!data->node)
+			return (free(data->line), ft_lstclear(&data->list, del), NULL);
+		ft_lstadd_back(&data->list, data->node);
 	}
-	return (data.list);
+	return (data->list);
 }
 
 int	check_line(char *line, t_requirements *data, int base_length)
@@ -75,9 +72,10 @@ int	check_line(char *line, t_requirements *data, int base_length)
 int	map_verify(int fd)
 {
 	t_requirements	data;
+	t_gather		gather_data;
 
 	init_data(&data);
-	data.lines = gahter_lines(fd);
+	data.lines = gahter_lines(fd, &gather_data);
 	if (!data.lines || fd < 0)
 		return (0);
 	data.another_head = data.lines;

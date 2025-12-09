@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 11:11:19 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/09 18:19:54 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:56:26 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,18 +41,18 @@ typedef struct s_gather
 }			t_gather;
 
 /*norminette.c*/
-void	for_norminette_sake(t_gather *data);
-void	init_data(t_requirements *data);
-void	del(void *content);
+void		for_norminette_sake(t_gather *data);
+void		init_data(t_requirements *data);
+void		del(void *content);
 /*parsing2.c*/
 int			check_map_path(char *str);
 int			check_status(int start_point, int exit_point, int collectables);
 int			check_first_last_line(char *line, int base_length);
-int	final_check(char *found, char *str, int i);
+int			final_check(char *found, char *str, int i);
 
 /*parsing.c*/
-int	check_line(char *line, t_requirements *data, int base_length);
+int			check_line(char *line, t_requirements *data, int base_length);
 int			map_verify(int fd);
-t_list		*gahter_lines(int fd);
+t_list		*gahter_lines(int fd, t_gather *data);
 
 #endif

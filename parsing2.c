@@ -31,8 +31,6 @@ int	check_first_last_line(char *line, int base_length)
 	return (1);
 }
 
-
-
 int	check_status(int start_point, int exit_point, int collectables)
 {
 	if ((start_point == 1 && exit_point == 1 && collectables >= 1))

@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 18:10:28 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/09 18:17:44 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:40:13 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	init_data(t_requirements *data)
 	data->validity = 0;
 	data->linex = NULL;
 }
+
 void	for_norminette_sake(t_gather *data)
 {
 	data->inside_map = 0;
@@ -31,6 +32,7 @@ void	for_norminette_sake(t_gather *data)
 	data->list = NULL;
 	data->line = "magic";
 }
+
 void	del(void *content)
 {
 	free(content);
