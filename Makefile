@@ -4,7 +4,7 @@ HEADER = utils.h
 
 FLAGS = -Wall -Wextra -Werror
 
-SOURCE = parsing.c parsing2.c main.c
+SOURCE = parsing.c parsing2.c main.c norminette.c 
 
 OBJECTS = $(SOURCE:.c=.o)
 

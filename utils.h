@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/16 11:11:19 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/09 17:56:16 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:19:54 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,18 +40,19 @@ typedef struct s_gather
 	int		empties;
 }			t_gather;
 
+/*norminette.c*/
+void	for_norminette_sake(t_gather *data);
+void	init_data(t_requirements *data);
+void	del(void *content);
+/*parsing2.c*/
 int			check_map_path(char *str);
-void		del_content(void *content);
-int			map_verify(int fd);
-int			check_first_last_line(char *line, int base_length);
 int			check_status(int start_point, int exit_point, int collectables);
-void		init_data(t_requirements *data);
+int			check_first_last_line(char *line, int base_length);
+int	final_check(char *found, char *str, int i);
 
-t_list		*ft_lstnew(void *content);
-t_list		*ft_lstlast(t_list *lst);
-void		ft_lstadd_back(t_list **lst, t_list *new);
-void		ft_lstdelone(t_list *lst, void (*del)(void *));
-void		ft_lstclear(t_list **lst, void (*del)(void *));
+/*parsing.c*/
+int	check_line(char *line, t_requirements *data, int base_length);
+int			map_verify(int fd);
 t_list		*gahter_lines(int fd);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/07 17:30:37 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/08 21:03:05 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:17:43 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,18 +31,7 @@ int	check_first_last_line(char *line, int base_length)
 	return (1);
 }
 
-void	init_data(t_requirements *data)
-{
-	data->lines = NULL;
-	data->another_head = NULL;
-	data->start = 0;
-	data->exit = 0;
-	data->collect = 0;
-	data->line_length = 0;
-	data->flag = 0;
-	data->validity = 0;
-	data->linex = NULL;
-}
+
 
 int	check_status(int start_point, int exit_point, int collectables)
 {

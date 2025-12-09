@@ -6,25 +6,13 @@
 /*   By: aymel-ha <aymel-ha@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/03 10:53:21 by aymel-ha          #+#    #+#             */
-/*   Updated: 2025/12/09 18:06:11 by aymel-ha         ###   ########.fr       */
+/*   Updated: 2025/12/09 18:24:39 by aymel-ha         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "utils.h"
 #include <stdio.h>
 
-void	del(void *content)
-{
-	free(content);
-}
-
-void	for_norminette_sake(t_gather *data)
-{
-	data->inside_map = 0;
-	data->empties = 0;
-	data->list = NULL;
-	data->line = "magic";
-}
 
 t_list	*gahter_lines(int fd)
 {
